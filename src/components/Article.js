@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useToken from "../hook/useToken";
 import { getArticles } from "../lib/apiOptArticles";
+import Navbar from "./Navbar";
 
 const Article = () => {
     let { uuid } = useParams();
    const [article, setArticle] = useState({title:"", description:"", author: ""})
-    const {token} = useToken();
+    const {userName} = useToken();
 
     useEffect(() => {
         const fetch = async()=>{ 
@@ -24,15 +25,19 @@ const Article = () => {
         description: { color: "#333", fontSize: "16px", marginTop: "1rem", lineHeight: 1.5, fontFamily: "Arial" }
     };
 
-    console.log("token :", token);
     
     return (<>
-        {token ? <p>Edit</p> : null}
+            <Navbar
+                left={<h1>Article View</h1>}
+            />
+
             <div style={{display: "flex", flexDirection: "row", fontFamily: "system-ui"}} >
-            <div style={style.title}>
-            <h2> {article.title}</h2>
-            </div>
-            <div style={style.author} >{article.author}</div>
+                <div style={style.title}>
+                    <h2> {article.title}</h2>
+                </div>
+                <div style={style.author} >
+                   { userName===article.author? <p> 🖊️ Edit</p> : <p>{article.author}</p>}
+                </div>
             </div>
             <div style={style.description} >{article.description}</div>
         
