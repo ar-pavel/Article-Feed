@@ -1,18 +1,26 @@
-import Feed from "./components/Feed";
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import Feed from "./components/Feed";
 import Article from "./components/Article";
+import Login from "./components/Login";
+import useToken from "./hook/useToken";
 
 const App = () => {
+
+  // for now we are strong it in app.js
+  const { token, setToken } = useToken();
+
+
   return (<>
     <Router>
       <Switch>
+      <Route exact path="/login"> <Login setToken={setToken} /> </Route>
+      <Route exact path="/"> <Feed /> </Route>
         <Route path="/:uuid"> <Article /> </Route>
-        <Route path="/"> <Feed /> </Route>
       </Switch>
     </Router>
 
