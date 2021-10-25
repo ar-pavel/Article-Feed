@@ -1,7 +1,22 @@
+import Feed from "./components/Feed";
 
-function App() {
-  return (
-   <div>APP</div>
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Article from "./components/Article";
+
+const App = () => {
+  return (<>
+    <Router>
+      <Switch>
+        <Route path="/:uuid"> <Article /> </Route>
+        <Route path="/"> <Feed /> </Route>
+      </Switch>
+    </Router>
+
+  </>
   );
 }
 
