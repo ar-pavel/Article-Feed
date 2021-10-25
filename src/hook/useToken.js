@@ -7,18 +7,28 @@ const useToken = () => {
             const userToken = JSON.parse(tokenString);
             return userToken;
         })
-   
+    
+    const [userName, setUserName] = useState(()=> { 
+        const nameString = sessionStorage.getItem('userName');
+        const userName = JSON.parse(nameString);
+        return userName;
+    })
 
-    const saveToken = userToken => {
-        sessionStorage.setItem('token', JSON.stringify(userToken));
-        setToken(userToken);
-        //console.log("token to saved:", userToken)
-        //console.log("token saved:", token)
+    const saveToken = (user) => {
+        console.log(user);
+        const {token, name} = user;
+
+        sessionStorage.setItem('token', JSON.stringify(token));
+        sessionStorage.setItem('userName', JSON.stringify(name));
+        setToken(token);
+        setUserName(name);
+
     }
 
     return {
         setToken: saveToken,
-        token
+        token, 
+        userName
     }
 
 }
