@@ -13,7 +13,7 @@ import Signup from "./components/Signup";
 const App = () => {
 
   // for now we are strong it in app.js
-  const { token, setToken } = useToken();
+  const { setToken } = useToken();
 
 
   return (<>
