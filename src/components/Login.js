@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import loginUser from "../lib/apiOptUser";
+import {loginUser} from "../lib/apiOptUser";
 import PropTypes from 'prop-types';
 
 const Login = ({ setToken }) => {
@@ -15,7 +15,6 @@ const Login = ({ setToken }) => {
             const data =  await loginUser({ email, password });
             // console.log("Response from api:", data);
             setToken(data.token);
-            //setToken("test-token-12345");
         } catch (error) {
             console.log(error.message)
             alert("invalid credentials")
