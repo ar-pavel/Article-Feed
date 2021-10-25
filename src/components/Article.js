@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import useToken from "../hook/useToken";
 import { getArticles } from "../lib/apiOptArticles";
 
-const Article = ({token=null}) => {
+const Article = () => {
     let { uuid } = useParams();
    const [article, setArticle] = useState({title:"", description:"", author: ""})
-
+    const {token} = useToken();
 
     useEffect(() => {
         const fetch = async()=>{ 
