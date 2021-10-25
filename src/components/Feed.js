@@ -7,17 +7,15 @@ function Feed() {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        let mounted = true;
-        getArticles()
-            .then(articles => {
-                if (mounted) {
-                    setArticles(articles)
-                }
-            })
-        return () => mounted = false;
+        const fetch = async()=>{ 
+            const data =  await getArticles(); 
+            setArticles(data);
+        };
+        fetch();        
+
     }, []);
 
-
+    // will be transafarred to ceprate CSS file
     const style = {
         title: { color: '#333', flex: 1, fontSize: 20, lineHeight: 1.25, fontWeight:500, letterSpacing: "-.5px" },
         author: { color: "#666", display: "block", fontSize: 15, marginTop: "2rem" , marginLeft: ".5rem"},

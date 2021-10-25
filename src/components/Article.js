@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getArticle } from "../lib/apiOptArticles";
+import { getArticles } from "../lib/apiOptArticles";
 
 function Article({token=null}) {
     let { uuid } = useParams();
-    const [articles, setArticles] = useState({title:"", description:"", author: ""});
+   const [article, setArticle] = useState({title:"", description:"", author: ""})
+
 
     useEffect(() => {
-        let mounted = true;
-        getArticle(uuid)
-            .then(articles => {
-                if (mounted) {
-                    setArticles(articles)
-                }
-            })
-        return () => mounted = false;
+        const fetch = async()=>{ 
+            const data =  await getArticles(uuid); 
+            setArticle(data);
+        };
+        fetch();        
     }, [uuid]);
+
         
+    // will be transafarred to ceprate CSS file
     const style = {
         title: { color: '#333', flex: 1, fontSize: 20, lineHeight: 1.25, fontWeight: 500, letterSpacing: "-.5px" },
         author: { color: "#666", display: "block", fontSize: 15, marginTop: "2rem", marginLeft: ".5rem" },
@@ -29,11 +29,11 @@ function Article({token=null}) {
         {token ? <p>Edit</p> : null}
             <div style={{display: "flex", flexDirection: "row", fontFamily: "system-ui"}} >
             <div style={style.title}>
-            <h2> {articles.title}</h2>
+            <h2> {article.title}</h2>
             </div>
-            <div style={style.author} >{articles.author}</div>
+            <div style={style.author} >{article.author}</div>
             </div>
-            <div style={style.description} >{articles.description}</div>
+            <div style={style.description} >{article.description}</div>
         
     </>
     );
