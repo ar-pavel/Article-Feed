@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Article from "./components/Article";
 
-function App() {
+const App = () => {
   return (<>
     <Router>
       <Switch>
