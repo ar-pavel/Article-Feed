@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getArticles } from "../lib/apiOptArticles";
 
-function Feed() {
+const Feed = () => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {

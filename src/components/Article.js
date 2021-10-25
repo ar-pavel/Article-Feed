@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticles } from "../lib/apiOptArticles";
 
-function Article({token=null}) {
+const Article = ({token=null}) => {
     let { uuid } = useParams();
    const [article, setArticle] = useState({title:"", description:"", author: ""})
 
