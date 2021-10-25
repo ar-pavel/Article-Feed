@@ -14,8 +14,8 @@ const Signup = ({ setToken }) => {
        // console.log(authorName, password);
         try {
             const data =  await signupUser({ authorName, password , email});
-            console.log("Response from api:", data);
-            setToken(data.token);
+            // console.log("Response from api:", data);
+            setToken(data);
             alert("signup successfully!");
         } catch (error) {
             console.log(error)

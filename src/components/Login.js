@@ -14,7 +14,8 @@ const Login = ({ setToken }) => {
         try {
             const data =  await loginUser({ email, password });
             // console.log("Response from api:", data);
-            setToken(data.token);
+            setToken(data);
+            alert("login successfull")
         } catch (error) {
             console.log(error.message)
             alert("invalid credentials")
