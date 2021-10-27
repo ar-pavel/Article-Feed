@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { loginUser } from "../lib/apiOptUser";
-import PropTypes from "prop-types";
 import { Redirect } from "react-router";
 import useToken from "../hook/useToken";
 
@@ -57,9 +56,6 @@ const Login = () => {
       </form>
     </div>
   );
-};
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
 };
 
 export default Login;
