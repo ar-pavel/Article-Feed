@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getArticles } from "../lib/apiOptArticles";
+import Navbar from "./Navbar";
 
 const Feed = () => {
     const [articles, setArticles] = useState([]);
@@ -24,9 +25,9 @@ const Feed = () => {
     
     return (
         <div>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                <h1>Article Feed</h1>
-            </div>
+           <Navbar 
+                left={<h1>Article Feed</h1>}
+           />
             <ul>
                 {articles.map(article =>
                     <li  key={article.uuid}>
