@@ -29,6 +29,8 @@ export async function updatetArticles(id = null, token, article) {
   });
   const data = res.json();
 
+  console.log(data);
+
   //   console.log("response:", data);
   return data;
 }
