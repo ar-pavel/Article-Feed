@@ -19,20 +19,10 @@ const Modal = ({ handleClose, show, children }) => {
       left: "50%",
       transform: "translate(-50%,-50%)",
     },
-
-    displayBlock: {
-      display: "block",
-    },
-
-    displayNone: {
-      display: "none",
-    },
   };
 
-  const showHide = show ? style.displayBlock : style.displayNone;
-
-  return (
-    <main style={showHide}>
+  return show ? (
+    <main>
       <div style={style.modal}>
         <section style={style.main}>
           {children}
@@ -46,6 +36,8 @@ const Modal = ({ handleClose, show, children }) => {
         </section>
       </div>
     </main>
+  ) : (
+    <> </>
   );
 };
 

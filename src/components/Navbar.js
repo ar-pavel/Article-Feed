@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "../hook/useToken";
+import ConstructArticle from "./ConstructArticle";
 
 const Navbar = ({ left, right }) => {
   const { userName } = useToken();
+  const [status, setStatus] = useState(false);
 
   const style = {
     flex: {
@@ -16,6 +19,10 @@ const Navbar = ({ left, right }) => {
     },
   };
 
+  const handleStatus = () => {
+    setStatus(true);
+  };
+
   return (
     <>
       <div style={style.flex}>
@@ -26,16 +33,19 @@ const Navbar = ({ left, right }) => {
         <div>
           {userName ? (
             <div style={style.flex}>
-              <button style={style.button}>Add Article</button>
+              <button style={style.button} onClick={handleStatus}>
+                Add Article
+              </button>
               <p>{userName}</p>
             </div>
           ) : (
             <Link style={{ textDecoration: "none" }} to={"/login"}>
-              <p>login</p>{" "}
+              <p>login</p>
             </Link>
           )}
         </div>
       </div>
+      {status && <ConstructArticle changeStatus={setStatus} />}
     </>
   );
 };

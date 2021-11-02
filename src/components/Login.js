@@ -3,6 +3,7 @@ import { useState } from "react";
 import { loginUser } from "../lib/apiOptUser";
 import { Redirect } from "react-router";
 import useToken from "../hook/useToken";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,6 +55,10 @@ const Login = () => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <br />
+      <div>
+        <Link to={"/signup"}>New user? Signup</Link>
+      </div>
     </div>
   );
 };

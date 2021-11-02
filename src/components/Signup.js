@@ -36,37 +36,42 @@ const Signup = () => {
   return token ? (
     <Redirect to="/" />
   ) : (
-    <div style={style.main}>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <p style={style.flex}>
-            <label>User Name</label>
-            <input
-              type="text"
-              value={authorName}
-              onChange={(event) => setAuthorName(event.target.value)}
-            ></input>
-          </p>
-          <p style={style.flex}>
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            ></input>
-          </p>
-          <p style={style.flex}>
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            ></input>
-          </p>
-        </fieldset>
-        <br />
-        <input type="submit"></input>
-      </form>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <h1>Author SignUp </h1>
+      <div style={style.main}>
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            <p style={style.flex}>
+              <label>User Name</label>
+              <input
+                type="text"
+                value={authorName}
+                onChange={(event) => setAuthorName(event.target.value)}
+              ></input>
+            </p>
+            <p style={style.flex}>
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              ></input>
+            </p>
+            <p style={style.flex}>
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              ></input>
+            </p>
+          </fieldset>
+          <br />
+          <input type="submit"></input>
+        </form>
+      </div>
     </div>
   );
 };
