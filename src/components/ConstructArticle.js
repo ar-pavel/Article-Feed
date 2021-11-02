@@ -19,26 +19,22 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     changeStatus(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (article) {
         // update article
-        const update = async () => {
-          const res = await updatetArticles(article.uuid, token, {
-            title,
-            description,
-          });
-          console.log(res);
-        };
-        update();
+
+        const res = await updatetArticles(article.uuid, token, {
+          title,
+          description,
+        });
+        console.log(res);
       } else {
         //create article
-        const create = async () => {
-          const res = await createArticles(token, { title, description });
-          console.log(res);
-        };
-        create();
+
+        const res = await createArticles(token, { title, description });
+        console.log(res);
       }
       hideModal();
     } catch (error) {
