@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
 const Modal = ({ handleClose, show, children }) => {
   const style = {
     modal: {
@@ -21,24 +24,23 @@ const Modal = ({ handleClose, show, children }) => {
     },
   };
 
-  return show ? (
-    <main>
-      <div style={style.modal}>
-        <section style={style.main}>
-          {children}
-          <button
-            style={{ float: "right" }}
-            type="button"
-            onClick={handleClose}
-          >
-            Close
-          </button>
-        </section>
-      </div>
-    </main>
-  ) : (
-    <> </>
-  );
+  return show
+    ? ReactDOM.createPortal(
+        <div style={style.modal}>
+          <section style={style.main}>
+            {children}
+            <button
+              style={{ float: "right" }}
+              type="button"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+          </section>
+        </div>,
+        document.body
+      )
+    : null;
 };
 
 export default Modal;
