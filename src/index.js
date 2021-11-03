@@ -3,10 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ErrorBoundary } from "react-error-boundary";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary
+      FallbackComponent={
+        <h1>Oops, caught an error while loading the page for you...</h1>
+      }
+      onError={(error, errorInfo) => console.log({ error, errorInfo })}
+    >
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById("root")
 );
