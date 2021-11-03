@@ -8,7 +8,7 @@ const Feed = lazy(() => import("./components/Feed"));
 const App = () => {
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Bear with me, Loading the page for you...</div>}>
         <Router>
           <Switch>
             <Route exact path="/login">
