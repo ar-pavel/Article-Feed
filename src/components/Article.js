@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import useToken from "../hook/useToken";
 import { getArticles } from "../lib/apiOptArticles";
 import ConstructArticle from "./ConstructArticle";
@@ -24,61 +25,57 @@ const Article = () => {
     fetch();
   }, [uuid]);
 
-  // will be transafarred to ceprate CSS file
-  const style = {
-    title: {
-      color: "#333",
-      flex: 1,
-      fontSize: 20,
-      lineHeight: 1.25,
-      fontWeight: 500,
-      letterSpacing: "-.5px",
-    },
-    author: {
-      color: "#666",
-      display: "block",
-      fontSize: 15,
-      marginTop: "2rem",
-      marginLeft: ".5rem",
-    },
-    description: {
-      color: "#333",
-      fontSize: "16px",
-      marginTop: "1rem",
-      lineHeight: 1.5,
-      fontFamily: "Arial",
-    },
-  };
-
   const handleEdit = () => {
     setStatus(true);
   };
 
   return (
     <>
-      <Navbar left={<h1>Article View</h1>} />
+      <Navbar
+        left={
+          <>
+            <Link to={`/`} className="no-decoration-text">
+              <h1 className="nav-header">Article View</h1>
+            </Link>
+          </>
+        }
+      />
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          fontFamily: "system-ui",
-        }}
-      >
-        <div style={style.title}>
-          <h2> {article.title}</h2>
+      <div className="article-view">
+        <div className="flex-display space-between">
+          <h2 className="title"> {article.title}</h2>
+          <div>
+            {userName === article.author ? (
+              <button disabled={status} onClick={handleEdit}>
+                🖊️ Edit
+              </button>
+            ) : null}
+          </div>
         </div>
-        <div style={style.author}>
-          {userName === article.author ? (
-            <button disabled={status} onClick={handleEdit}>
-              🖊️ Edit
-            </button>
-          ) : (
-            <p>{article.author}</p>
-          )}
+        <div>
+          <p>
+            By <Link to="#"> {article.author} </Link>
+          </p>
+          {/*This section is just a placeholder*/}
+          <p>
+            <span className="flex-display rand">
+              <span className="timestamp">
+                <span>Last Validated on</span>
+                <span>March 30, 2020</span>
+              </span>
+              <span className="timestamp">
+                <span>Originally Published on</span>
+                <span>March 26, 2020</span>
+              </span>
+              <span>
+                <span>161.5k</span>
+                <span> views</span>
+              </span>
+            </span>
+          </p>
         </div>
+        <div className="description">{article.description}</div>
       </div>
-      <div style={style.description}>{article.description}</div>
 
       {status && (
         <ConstructArticle article={article} changeStatus={setStatus} />

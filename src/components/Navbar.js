@@ -7,46 +7,34 @@ const Navbar = ({ left, right }) => {
   const { userName } = useToken();
   const [status, setStatus] = useState(false);
 
-  const style = {
-    flex: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-    button: {
-      margin: "10px",
-    },
-  };
-
   const handleStatus = () => {
     setStatus(true);
   };
 
   return (
-    <>
-      <div style={style.flex}>
-        <div style={style.flex}>
+    <div className="nav-container">
+      <div className="flex-display space-between">
+        <div className="flex-display space-between">
           {left}
           {right}
         </div>
         <div>
           {userName ? (
-            <div style={style.flex}>
-              <button style={style.button} onClick={handleStatus}>
+            <div className="flex-display space-between">
+              <button className="article-add-button" onClick={handleStatus}>
                 Add Article
               </button>
               <p>{userName}</p>
             </div>
           ) : (
-            <Link style={{ textDecoration: "none" }} to={"/login"}>
+            <Link className="no-decoration-text" to={"/login"}>
               <p>login</p>
             </Link>
           )}
         </div>
       </div>
       {status && <ConstructArticle changeStatus={setStatus} />}
-    </>
+    </div>
   );
 };
 

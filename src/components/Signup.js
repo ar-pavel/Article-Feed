@@ -24,34 +24,23 @@ const Signup = () => {
     }
   };
 
-  const style = {
-    main: { display: "flex", flexDirection: "column", alignItems: "center" },
-    flex: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
-  };
-
   return token ? (
     <Redirect to="/" />
   ) : (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <h1>Author SignUp </h1>
-      <div style={style.main}>
+    <div className="flex-display-column">
+      <h1 className="title">Author SignUp </h1>
+      <div className="flex-display-column">
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <p style={style.flex}>
-              <label>User Name</label>
+            <p className="flex-display space-between">
+              <label>User Name </label>
               <input
                 type="text"
                 value={authorName}
                 onChange={(event) => setAuthorName(event.target.value)}
               ></input>
             </p>
-            <p style={style.flex}>
+            <p className="flex-display space-between">
               <label>Email</label>
               <input
                 type="email"
@@ -59,7 +48,7 @@ const Signup = () => {
                 onChange={(event) => setEmail(event.target.value)}
               ></input>
             </p>
-            <p style={style.flex}>
+            <p className="flex-display space-between">
               <label>Password</label>
               <input
                 type="password"
