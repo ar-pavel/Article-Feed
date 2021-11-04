@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 const Signup = lazy(() => import("./components/Signup"));
 const Login = lazy(() => import("./components/Login"));
 const Article = lazy(() => import("./components/Article"));

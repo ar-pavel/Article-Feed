@@ -36,3 +36,148 @@
     transform: rotate(360deg);
   }
 }
+
+/* Nav-bar  */
+
+.nav-container {
+  padding: 1rem 2rem 1rem 2rem;
+  /* border-bottom: 0.1rem solid blue; */
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  box-shadow: 0 2px 4px rgb(3 27 78 / 10%);
+}
+
+.nav-header {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Flex Properties */
+
+.flex-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-display-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.space-between {
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Article  */
+
+.title {
+  color: #031b4e;
+  flex: 1;
+  font-size: 20;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.author {
+  color: #666;
+  display: block;
+  font-size: 15;
+  margin: auto;
+  /* margin-top: 2rem; */
+}
+
+.description {
+  color: #333;
+  font-size: 16px;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.no-decoration-text {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-list-view {
+  max-width: 60%;
+  margin: auto;
+}
+
+.article-view {
+  max-width: 80%;
+  margin: auto;
+}
+
+.article-card {
+  margin-bottom: 2em;
+}
+
+.article-add-button {
+  padding: 0.5rem 1rem;
+  background: aliceblue;
+  border: none;
+  font-weight: bold;
+  margin-right: 1rem;
+  border-radius: 10px;
+}
+.article-add-button:hover {
+  background: whitesmoke;
+  border: seagreen;
+}
+
+.rand {
+  font-size: small;
+  overflow: auto;
+  color: #031b4e;
+  flex-wrap: wrap;
+  margin: 0 auto 3em;
+  padding-bottom: 10 px;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.timestamp:after {
+  font-weight: 700;
+  content: "\b7";
+  font-size: large;
+  line-height: 1;
+  margin: 0 0.5em 0 0.5em;
+}
+
+/* Modal  */
+.modal-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  padding: 10px;
+  position: fixed;
+  background: rgba(230, 233, 240, 0.911);
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  color: #282c34;
+}
+
+a:hover {
+  color: #0080ff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}

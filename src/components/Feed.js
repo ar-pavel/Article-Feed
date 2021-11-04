@@ -15,58 +15,31 @@ const Feed = () => {
     fetch();
   }, []);
 
-  // will be transafarred to ceprate CSS file
-  const style = {
-    title: {
-      color: "#333",
-      flex: 1,
-      fontSize: 20,
-      lineHeight: 1.25,
-      fontWeight: 500,
-      letterSpacing: "-.5px",
-    },
-    author: {
-      color: "#666",
-      display: "block",
-      fontSize: 15,
-      marginTop: "2rem",
-      marginLeft: ".5rem",
-    },
-    description: {
-      color: "#333",
-      fontSize: "16px",
-      marginTop: ".5rem",
-      lineHeight: 1.5,
-      fontFamily: "Arial",
-    },
-  };
-
   return (
     <div>
-      <Navbar left={<h1>Article Feed</h1>} />
-      <ul>
+      <Navbar
+        left={
+          <>
+            <Link to={`/`} className="no-decoration-text">
+              <h1 className="nav-header">Article Feed</h1>
+            </Link>
+          </>
+        }
+      />
+      <ul className="article-list-view">
         {articles.map((article) => (
-          <li key={article.uuid}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                fontFamily: "system-ui",
-              }}
-            >
-              <div style={style.title}>
-                <Link
-                  to={`/${article.uuid}`}
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  {" "}
-                  <h2> {article.title}</h2>{" "}
+          <li className="article-card" key={article.uuid}>
+            <div className="flex-display">
+              <div className="title">
+                <Link to={`/${article.uuid}`} className="no-decoration-text">
+                  <h2> {article.title}</h2>
                 </Link>
               </div>
-              <div style={style.author}>{article.author}</div>
+              <div className="author">{article.author}</div>
             </div>
-            <div style={style.description}>
+            <div className="description">
               {article.description.substring(0, 300) + "..."}
+              <Link to={`/${article.uuid}`}>{"Read More"}</Link>
             </div>
           </li>
         ))}

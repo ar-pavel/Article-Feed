@@ -27,10 +27,8 @@ const Login = () => {
   return token ? (
     <Redirect to="/" />
   ) : (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <h1>Author Login </h1>
+    <div className="flex-display-column ">
+      <h1 className="title">Author Login </h1>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
