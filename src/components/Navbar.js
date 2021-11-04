@@ -15,6 +15,13 @@ const Navbar = ({ left, right }) => {
     <div className="nav-container">
       <div className="flex-display space-between">
         <div className="flex-display space-between">
+          <img
+            className="logo"
+            src={process.env.PUBLIC_URL + "/icon.png"}
+            height={50}
+            width={50}
+            alt="LOGO"
+          />
           {left}
           {right}
         </div>
