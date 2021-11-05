@@ -208,6 +208,7 @@
 
 .user:hover {
   text-decoration: rgba(230, 233, 240, 0.911);
+  cursor: pointer;
 }
 
 h1 {

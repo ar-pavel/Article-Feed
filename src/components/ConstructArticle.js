@@ -17,6 +17,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const hideModal = () => {
     setShow(false);
     changeStatus(false);
+    window.location.reload();
   };
 
   const handleSubmit = async (e) => {
