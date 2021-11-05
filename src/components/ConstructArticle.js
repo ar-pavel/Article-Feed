@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
 import { createArticles, updatetArticles } from "../lib/apiOptArticles";
 import Modal from "./Modal";
@@ -10,6 +11,8 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     article ? article.description : ""
   );
 
+  const { setUpdateStatus, setCreateStatus } = useContext(UpdaterContex);
+
   const { token } = useToken();
 
   const [show, setShow] = useState(true);
@@ -17,7 +20,6 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const hideModal = () => {
     setShow(false);
     changeStatus(false);
-    window.location.reload();
   };
 
   const handleSubmit = async (e) => {
@@ -25,18 +27,19 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     try {
       if (article) {
         // update article
-
+        setUpdateStatus((value) => value + 1);
         const res = await updatetArticles(article.uuid, token, {
           title,
           description,
         });
         console.log(res);
       } else {
+        setCreateStatus((value) => value + 1);
         //create article
-
         const res = await createArticles(token, { title, description });
         console.log(res);
       }
+
       hideModal();
     } catch (error) {
       console.log(error.message);
@@ -56,7 +59,6 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
                 type="text"
                 placeholder="add a title"
                 value={title}
-                size={50}
                 onChange={(e) => setTitle(e.target.value)}
               ></input>
             </label>

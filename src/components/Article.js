@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
+import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
 import { deleteArticle, getArticles } from "../lib/apiOptArticles";
 import ConstructArticle from "./ConstructArticle";
@@ -10,6 +11,8 @@ const Article = () => {
   let { uuid } = useParams();
   let history = useHistory();
 
+  const { updateStatus } = useContext(UpdaterContex);
+
   const [article, setArticle] = useState({
     uuid: uuid,
     title: "",
@@ -17,7 +20,6 @@ const Article = () => {
     author: "",
   });
   const { userName, token } = useToken();
-
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
@@ -26,11 +28,7 @@ const Article = () => {
       setArticle(data);
     };
     fetch();
-  }, [uuid]);
-
-  const handleEdit = () => {
-    setStatus(true);
-  };
+  }, [uuid, updateStatus]);
 
   const handleDelete = () => {
     try {
@@ -62,7 +60,9 @@ const Article = () => {
               <button
                 className="article-edit-button flex-display space-between"
                 disabled={status}
-                onClick={handleEdit}
+                onClick={() => {
+                  setStatus(true);
+                }}
               >
                 <img
                   className="add-logo"
@@ -119,7 +119,6 @@ const Article = () => {
         </div>
         <div className="description">{article.description}</div>
       </div>
-
       {status && (
         <ConstructArticle article={article} changeStatus={setStatus} />
       )}

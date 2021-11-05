@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import UpdaterContex from "../hook/updaterContext";
 import { getArticles } from "../lib/apiOptArticles";
 import Navbar from "./Navbar";
 
 const Feed = () => {
   const [articles, setArticles] = useState([]);
+
+  const { createStatus } = useContext(UpdaterContex);
 
   useEffect(() => {
     const fetch = async () => {
@@ -18,7 +21,7 @@ const Feed = () => {
       }
     };
     fetch();
-  }, []);
+  }, [createStatus]);
 
   return (
     <div>
