@@ -44,13 +44,23 @@ const Article = () => {
       <div className="article-view">
         <div className="flex-display space-between">
           <h2 className="title"> {article.title}</h2>
-          <div>
-            {userName === article.author ? (
-              <button disabled={status} onClick={handleEdit}>
-                🖊️ Edit
-              </button>
-            ) : null}
-          </div>
+
+          {userName === article.author ? (
+            <button
+              className="article-edit-button flex-display space-between"
+              disabled={status}
+              onClick={handleEdit}
+            >
+              <img
+                className="add-logo"
+                src={process.env.PUBLIC_URL + "/edit.png"}
+                height={15}
+                width={15}
+                alt="LOGO"
+              />
+              <p> Edit</p>
+            </button>
+          ) : null}
         </div>
         <div>
           <p>
