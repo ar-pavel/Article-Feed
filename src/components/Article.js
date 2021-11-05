@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import useToken from "../hook/useToken";
 import { deleteArticle, getArticles } from "../lib/apiOptArticles";
@@ -8,6 +8,8 @@ import Navbar from "./Navbar";
 
 const Article = () => {
   let { uuid } = useParams();
+  let history = useHistory();
+
   const [article, setArticle] = useState({
     uuid: uuid,
     title: "",
@@ -17,7 +19,6 @@ const Article = () => {
   const { userName, token } = useToken();
 
   const [status, setStatus] = useState(false);
-  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -34,15 +35,13 @@ const Article = () => {
   const handleDelete = () => {
     try {
       deleteArticle(token, uuid);
-      setDeleted(true);
+      history.push("/");
     } catch (error) {
       alert("unable to delete the article.");
     }
   };
 
-  return deleted ? (
-    <Redirect to="/" />
-  ) : (
+  return (
     <>
       <Navbar
         left={
