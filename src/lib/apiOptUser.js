@@ -1,5 +1,7 @@
+const base_url = "http://localhost:8084";
+
 export async function loginUser({ email, password }) {
-  const res = fetch("http://localhost:8084/login", {
+  const res = fetch(base_url + "/login", {
     method: "POST",
     mode: "cors",
     headers: {
@@ -13,7 +15,7 @@ export async function loginUser({ email, password }) {
 }
 
 export async function signupUser(credentials) {
-  const res = fetch("http://localhost:8084/signup", {
+  const res = fetch(base_url + "/signup", {
     method: "POST",
     mode: "cors",
     headers: {

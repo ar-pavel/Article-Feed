@@ -55,6 +55,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
                 type="text"
                 placeholder="add a title"
                 value={title}
+                size={50}
                 onChange={(e) => setTitle(e.target.value)}
               ></input>
             </label>

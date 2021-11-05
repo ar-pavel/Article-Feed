@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import useToken from "../hook/useToken";
-import { getArticles } from "../lib/apiOptArticles";
+import { deleteArticle, getArticles } from "../lib/apiOptArticles";
 import ConstructArticle from "./ConstructArticle";
 import Navbar from "./Navbar";
 
 const Article = () => {
   let { uuid } = useParams();
+  let history = useHistory();
+
   const [article, setArticle] = useState({
+    uuid: uuid,
     title: "",
     description: "",
     author: "",
   });
-  const { userName } = useToken();
+  const { userName, token } = useToken();
 
   const [status, setStatus] = useState(false);
 
@@ -27,6 +30,15 @@ const Article = () => {
 
   const handleEdit = () => {
     setStatus(true);
+  };
+
+  const handleDelete = () => {
+    try {
+      deleteArticle(token, uuid);
+      history.push("/");
+    } catch (error) {
+      alert("unable to delete the article.");
+    }
   };
 
   return (
@@ -44,13 +56,44 @@ const Article = () => {
       <div className="article-view">
         <div className="flex-display space-between">
           <h2 className="title"> {article.title}</h2>
-          <div>
-            {userName === article.author ? (
-              <button disabled={status} onClick={handleEdit}>
-                🖊️ Edit
+
+          {userName === article.author ? (
+            <>
+              <button
+                className="article-edit-button flex-display space-between"
+                disabled={status}
+                onClick={handleEdit}
+              >
+                <img
+                  className="add-logo"
+                  src={process.env.PUBLIC_URL + "/edit.png"}
+                  height={15}
+                  width={15}
+                  alt="LOGO"
+                />
+                <p> Edit</p>
               </button>
-            ) : null}
-          </div>
+
+              <button
+                className="article-delete-button flex-display space-between"
+                disabled={status}
+                onClick={() => {
+                  window.confirm(
+                    "Are you sure you wish to delete this item?"
+                  ) && handleDelete();
+                }}
+              >
+                <img
+                  className="add-logo"
+                  src={process.env.PUBLIC_URL + "/delete-file.png"}
+                  height={15}
+                  width={15}
+                  alt="LOGO"
+                />
+                <p> Delete</p>
+              </button>
+            </>
+          ) : null}
         </div>
         <div>
           <p>
