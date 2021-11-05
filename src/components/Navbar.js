@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "../hook/useToken";
+import logout from "../lib/logOut";
 import ConstructArticle from "./ConstructArticle";
 
 const Navbar = ({ left, right }) => {
@@ -28,14 +29,32 @@ const Navbar = ({ left, right }) => {
         <div>
           {userName ? (
             <div className="flex-display space-between">
-              <button className="article-add-button" onClick={handleStatus}>
-                Add Article
+              <button
+                className="article-add-button flex-display space-between"
+                onClick={handleStatus}
+              >
+                <img
+                  className="add-logo"
+                  src={process.env.PUBLIC_URL + "/add.png"}
+                  height={20}
+                  width={20}
+                  alt="LOGO"
+                />
+                <p> Add Article</p>
               </button>
-              <p>{userName}</p>
+              <p
+                onMouseOver={(e) => (e.target.textContent = "🚪 Log-out")}
+                onMouseLeave={(e) => (e.target.textContent = `👤 ${userName}`)}
+                className="user"
+                type="button"
+                onClick={(e) => logout()}
+              >
+                👤 {userName}
+              </p>
             </div>
           ) : (
             <Link className="no-decoration-text" to={"/login"}>
-              <p>login</p>
+              <p>👤 login</p>
             </Link>
           )}
         </div>

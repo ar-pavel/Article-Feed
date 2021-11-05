@@ -51,6 +51,10 @@
   font-family: "Courier New", Courier, monospace;
 }
 
+.add-logo {
+  margin-right: 0.5em;
+}
+
 /* Flex Properties */
 
 .flex-display {
@@ -116,12 +120,21 @@
 }
 
 .article-add-button {
-  padding: 0.5rem 1rem;
+  /* padding: 0.5rem 1rem; */
   background: aliceblue;
   border: none;
   font-weight: bold;
   margin-right: 1rem;
   border-radius: 10px;
+}
+.article-edit-button {
+  /* padding: 0.5rem 1rem; */
+  background: aliceblue;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0em 1.5em 0em 1.5em;
 }
 .article-add-button:hover {
   background: whitesmoke;
@@ -166,6 +179,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.user {
+  color: #031b4e;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+.user:hover {
+  text-decoration: rgba(230, 233, 240, 0.911);
 }
 
 h1 {
