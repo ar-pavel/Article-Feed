@@ -133,11 +133,30 @@
   border: none;
   font-weight: bold;
   border-radius: 10px;
-  margin: 0;
+  margin-right: 0.5em;
   padding: 0em 1.5em 0em 1.5em;
 }
+.article-delete-button {
+  /* padding: 0.5rem 1rem; */
+  background: rgb(209, 190, 190);
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  /* margin: 0.5em; */
+  padding: 0em 1.5em 0em 1.5em;
+}
+
 .article-add-button:hover {
-  background: whitesmoke;
+  background: rgb(145, 255, 118);
+  border: seagreen;
+}
+
+.article-edit-button:hover {
+  background: orange;
+  border: seagreen;
+}
+.article-delete-button:hover {
+  background: red;
   border: seagreen;
 }
 

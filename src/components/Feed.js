@@ -9,8 +9,13 @@ const Feed = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getArticles();
-      setArticles(data);
+      try {
+        const data = await getArticles();
+        setArticles(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetch();
   }, []);
