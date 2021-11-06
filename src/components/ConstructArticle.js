@@ -11,7 +11,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     article ? article.description : ""
   );
 
-  const { setUpdateStatus, setCreateStatus } = useContext(UpdaterContex);
+  const { setUpdateStatus } = useContext(UpdaterContex);
 
   const { token } = useToken();
 
@@ -25,16 +25,15 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setUpdateStatus((value) => value + 1);
       if (article) {
         // update article
-        setUpdateStatus((value) => value + 1);
         const res = await updatetArticles(article.uuid, token, {
           title,
           description,
         });
         console.log(res);
       } else {
-        setCreateStatus((value) => value + 1);
         //create article
         const res = await createArticles(token, { title, description });
         console.log(res);

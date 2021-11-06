@@ -9,13 +9,10 @@ const Feed = lazy(() => import("./components/Feed"));
 
 const App = () => {
   const [updateStatus, setUpdateStatus] = useState(0);
-  const [createStatus, setCreateStatus] = useState(0);
 
   return (
     <>
-      <UpdaterContex.Provider
-        value={{ updateStatus, createStatus, setUpdateStatus, setCreateStatus }}
-      >
+      <UpdaterContex.Provider value={{ updateStatus, setUpdateStatus }}>
         <Suspense
           fallback={<div>Bear with me, Loading the page for you...</div>}
         >

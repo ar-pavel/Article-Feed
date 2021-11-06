@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 const Feed = () => {
   const [articles, setArticles] = useState([]);
 
-  const { createStatus } = useContext(UpdaterContex);
+  const { updateStatus } = useContext(UpdaterContex);
 
   useEffect(() => {
     const fetch = async () => {
@@ -19,9 +19,10 @@ const Feed = () => {
       } catch (error) {
         console.log(error);
       }
+      console.log("update status : " + updateStatus);
     };
     fetch();
-  }, [createStatus]);
+  }, [updateStatus, articles.length]);
 
   return (
     <div>

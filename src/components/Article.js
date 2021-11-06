@@ -26,9 +26,12 @@ const Article = () => {
     const fetch = async () => {
       const data = await getArticles(uuid);
       setArticle(data);
+      console.log("update status:", updateStatus);
     };
     fetch();
-  }, [uuid, updateStatus]);
+    // not sure why removing `article.title, article.description` as dependancy
+    // doesn't always work
+  }, [uuid, article.title, article.description, updateStatus]);
 
   const handleDelete = () => {
     try {
