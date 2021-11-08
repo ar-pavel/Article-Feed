@@ -8,11 +8,11 @@ const usePagination = ({ contentPerPage, contentCount }) => {
   const startingIndex = endingIndex - contentPerPage;
 
   const nextPage = () => {
-    setCurrentPage(currentPage + (currentPage == totalPageCount ? 0 : 1));
+    setCurrentPage(currentPage + (currentPage === totalPageCount ? 0 : 1));
   };
 
   const prevPage = () => {
-    setCurrentPage(currentPage - (currentPage == 1 ? 0 : 1));
+    setCurrentPage(currentPage - (currentPage === 1 ? 0 : 1));
   };
 
   const randPage = (page) => {
