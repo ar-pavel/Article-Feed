@@ -66,7 +66,7 @@ const Feed = () => {
         ))}
       </ul>
       <div className="flex-display pagination-container">
-        <p className="text">
+        <p className="pag-text">
           {startingIndex + 1} - {Math.min(endingIndex, articles.length)} of{" "}
           {articles.length}
         </p>
