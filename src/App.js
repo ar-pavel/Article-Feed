@@ -12,7 +12,9 @@ const App = () => {
 
   return (
     <>
-      <UpdaterContex.Provider value={{ updateStatus, setUpdateStatus }}>
+      <UpdaterContex.Provider
+        value={{ updateStatus: updateStatus, setUpdateStatus: setUpdateStatus }}
+      >
         <Suspense
           fallback={<div>Bear with me, Loading the page for you...</div>}
         >
