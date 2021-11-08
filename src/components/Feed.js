@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UpdaterContex from "../hook/updaterContext";
 import usePagination from "../hook/usePagination";
 import { getArticles } from "../lib/apiOptArticles";
+import ArticleCard from "./ArticleCard";
 import Navbar from "./Navbar";
 
 const Feed = () => {
@@ -31,7 +32,6 @@ const Feed = () => {
         console.log(error);
       }
       console.log("update status : " + updateStatus);
-      console.log("totoal page count : " + totalPageCount);
     };
     fetch();
   }, [updateStatus, articles.length]);
@@ -50,18 +50,7 @@ const Feed = () => {
       <ul className="article-list-view">
         {articles.slice(startingIndex, endingIndex).map((article) => (
           <li className="article-card" key={article.uuid}>
-            <div className="flex-display">
-              <div className="title">
-                <Link to={`/${article.uuid}`} className="no-decoration-text">
-                  <h2> {article.title}</h2>
-                </Link>
-              </div>
-              <div className="author">{article.author}</div>
-            </div>
-            <div className="description">
-              {article.description.substring(0, 100) + "..."}
-              <Link to={`/${article.uuid}`}>{"Read More"}</Link>
-            </div>
+            <ArticleCard article={article} />
           </li>
         ))}
       </ul>
