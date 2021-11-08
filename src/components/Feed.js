@@ -77,13 +77,13 @@ const Feed = () => {
           &larr;
         </button>
 
-        {[...Array(totalPageCount).keys()].map((el) => (
+        {[...Array(totalPageCount).keys()].map((idx) => (
           <button
-            onClick={() => setPage(el + 1)}
-            key={el}
-            className={`page ${currentPage === el + 1 ? "active" : ""}`}
+            onClick={() => setPage(idx + 1)}
+            key={idx}
+            className={`page ${currentPage === idx + 1 ? "active" : ""}`}
           >
-            {el + 1}
+            {idx + 1}
           </button>
         ))}
 
