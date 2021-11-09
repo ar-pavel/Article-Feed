@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
 import { createArticles, updatetArticles } from "../lib/apiOptArticles";
 import Modal from "./Modal";
@@ -9,6 +10,8 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const [description, setDescription] = useState(
     article ? article.description : ""
   );
+
+  const { setUpdateStatus } = useContext(UpdaterContex);
 
   const { token } = useToken();
 
@@ -24,7 +27,6 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     try {
       if (article) {
         // update article
-
         const res = await updatetArticles(article.uuid, token, {
           title,
           description,
@@ -32,10 +34,11 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
         console.log(res);
       } else {
         //create article
-
         const res = await createArticles(token, { title, description });
         console.log(res);
       }
+      setUpdateStatus((value) => value + 1);
+
       hideModal();
     } catch (error) {
       console.log(error.message);
@@ -55,7 +58,6 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
                 type="text"
                 placeholder="add a title"
                 value={title}
-                size={50}
                 onChange={(e) => setTitle(e.target.value)}
               ></input>
             </label>
