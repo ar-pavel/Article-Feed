@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import UpdaterContex from "../hook/updaterContext";
+import UpdaterContext from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { fetch_data } from "../lib/apiOperations";
+import { fetchData } from "../lib/apiOperations";
 import Modal from "./Modal";
 
 const ConstructArticle = ({ article = null, changeStatus }) => {
@@ -11,7 +11,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     article ? article.description : ""
   );
 
-  const { setUpdateStatus } = useContext(UpdaterContex);
+  const { setUpdateStatus } = useContext(UpdaterContext);
 
   const { token } = useToken();
 
@@ -25,7 +25,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch_data(
+      const res = await fetchData(
         article ? article.uuid : null,
         article ? "PUT" : "POST",
         token,
