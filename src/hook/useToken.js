@@ -2,14 +2,14 @@ import { useState } from "react";
 
 const useToken = () => {
   const [token, setToken] = useState(() => {
-    const tokenString = sessionStorage.getItem("token");
-    const userToken = JSON.parse(tokenString);
+    const tokenString = localStorage.getItem("token");
+    const userToken = tokenString;
     return userToken;
   });
 
   const [userName, setUserName] = useState(() => {
-    const nameString = sessionStorage.getItem("userName");
-    const userName = JSON.parse(nameString);
+    const nameString = localStorage.getItem("userName");
+    const userName = nameString;
     return userName;
   });
 
@@ -17,8 +17,8 @@ const useToken = () => {
     console.log(user);
     const { token, name } = user;
 
-    sessionStorage.setItem("token", JSON.stringify(token));
-    sessionStorage.setItem("userName", JSON.stringify(name));
+    localStorage.setItem("token", token);
+    localStorage.setItem("userName", name);
     setToken(token);
     setUserName(name);
   };
