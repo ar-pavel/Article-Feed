@@ -25,21 +25,24 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetchData(
-        article ? article.uuid : null,
-        article ? "PUT" : "POST",
-        token,
-        {
+      if (article) {
+        console.log("article exist");
+        const res = await fetchData(`/articles/${article.uuid}`, "PUT", token, {
           body: JSON.stringify({ title, description }),
-        }
-      );
-      console.log(res);
+        });
+        console.log(res);
+      } else {
+        console.log("No article");
+        const res = await fetchData(`/articles/`, "POST", token, {
+          body: JSON.stringify({ title, description }),
+        });
+      }
 
       setUpdateStatus((status) => !status);
 
       hideModal();
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       alert("error!");
     }
   };

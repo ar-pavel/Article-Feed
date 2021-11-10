@@ -46,7 +46,7 @@ const Article = () => {
 
   const handleDelete = () => {
     try {
-      fetchData(uuid, "DELETE", token);
+      fetchData(`/articles/${uuid}`, "DELETE", token);
       history.push("/");
     } catch (error) {
       alert("unable to delete the article.");
