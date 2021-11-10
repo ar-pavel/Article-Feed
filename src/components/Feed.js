@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UpdaterContex from "../hook/updaterContext";
 import usePagination from "../hook/usePagination";
-import { getArticles } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOptArticles";
 import ArticleCard from "./ArticleCard";
 import Navbar from "./Navbar";
 
@@ -25,7 +25,7 @@ const Feed = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getArticles();
+        const data = await fetch_data(null, "GET");
         setArticles(data);
         console.log(data);
       } catch (error) {

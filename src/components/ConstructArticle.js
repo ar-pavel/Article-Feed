@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { createArticles, updatetArticles } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOptArticles";
 import Modal from "./Modal";
 
 const ConstructArticle = ({ article = null, changeStatus }) => {
@@ -25,18 +25,16 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (article) {
-        // update article
-        const res = await updatetArticles(article.uuid, token, {
-          title,
-          description,
-        });
-        console.log(res);
-      } else {
-        //create article
-        const res = await createArticles(token, { title, description });
-        console.log(res);
-      }
+      const res = await fetch_data(
+        article ? article.uuid : null,
+        article ? "PUT" : "POST",
+        token,
+        {
+          body: JSON.stringify({ title, description }),
+        }
+      );
+      console.log(res);
+
       setUpdateStatus((status) => !status);
 
       hideModal();

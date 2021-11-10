@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { deleteArticle, getArticles } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOptArticles";
 import ConstructArticle from "./ConstructArticle";
 import Navbar from "./Navbar";
 
@@ -24,7 +24,7 @@ const Article = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getArticles(uuid);
+      const data = await fetch_data(uuid, "GET");
       setArticle(data);
       console.log("update status:", updateStatus);
     };
@@ -35,7 +35,7 @@ const Article = () => {
 
   const handleDelete = () => {
     try {
-      deleteArticle(token, uuid);
+      fetch_data(uuid, "DELETE", token);
       history.push("/");
     } catch (error) {
       alert("unable to delete the article.");
