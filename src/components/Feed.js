@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UpdaterContex from "../hook/updaterContext";
 import usePagination from "../hook/usePagination";
-import { fetch_data } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOperations";
 import ArticleCard from "./ArticleCard";
 import Navbar from "./Navbar";
 

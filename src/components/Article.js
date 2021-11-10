@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { fetch_data } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOperations";
 import ConstructArticle from "./ConstructArticle";
 import Navbar from "./Navbar";
 

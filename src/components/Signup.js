@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { signupUser } from "../lib/apiOptUser";
+import { signupUser } from "../lib/apiOperations";
 import useToken from "../hook/useToken";
 import { Redirect } from "react-router";
 

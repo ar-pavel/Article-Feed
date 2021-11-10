@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import UpdaterContex from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { fetch_data } from "../lib/apiOptArticles";
+import { fetch_data } from "../lib/apiOperations";
 import Modal from "./Modal";
 
 const ConstructArticle = ({ article = null, changeStatus }) => {
