@@ -8,7 +8,7 @@ const Article = lazy(() => import("./components/Article"));
 const Feed = lazy(() => import("./components/Feed"));
 
 const App = () => {
-  const [updateStatus, setUpdateStatus] = useState(0);
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   return (
     <>

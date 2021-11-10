@@ -37,7 +37,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
         const res = await createArticles(token, { title, description });
         console.log(res);
       }
-      setUpdateStatus((value) => value + 1);
+      setUpdateStatus((status) => !status);
 
       hideModal();
     } catch (error) {
