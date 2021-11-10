@@ -25,7 +25,7 @@ const Feed = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await fetchData(null, "GET");
+        const data = await fetchData(`/articles`, "GET");
         setArticles(data);
         console.log(data);
       } catch (error) {

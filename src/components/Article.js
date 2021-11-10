@@ -25,7 +25,7 @@ const Article = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await fetchData(article.uuid, "GET");
+        const data = await fetchData(`/articles/${article.uuid}`, "GET");
         console.log("data fetched :", data);
         setArticle(data);
       } catch (error) {
