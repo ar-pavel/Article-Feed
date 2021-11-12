@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { signupUser } from "../lib/apiOptUser";
+import { fetchData } from "../lib/apiOperations";
 import useToken from "../hook/useToken";
 import { Redirect } from "react-router";
 
@@ -14,7 +14,14 @@ const Signup = () => {
     e.preventDefault();
     // console.log(authorName, password);
     try {
-      const data = await signupUser({ authorName, password, email });
+      const data = await fetchData("/signup", "POST", "", {
+        body: JSON.stringify({
+          name: authorName,
+          password: password,
+          email: email,
+        }),
+      });
+      console.log("data fetched :", data);
       // console.log("Response from api:", data);
       setToken(data);
       alert("signup successfully!");

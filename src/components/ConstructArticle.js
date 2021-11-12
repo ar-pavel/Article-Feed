@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import UpdaterContex from "../hook/updaterContext";
+import UpdaterContext from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { createArticles, updatetArticles } from "../lib/apiOptArticles";
+import { fetchData } from "../lib/apiOperations";
 import Modal from "./Modal";
 
 const ConstructArticle = ({ article = null, changeStatus }) => {
@@ -11,7 +11,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     article ? article.description : ""
   );
 
-  const { setUpdateStatus } = useContext(UpdaterContex);
+  const { setUpdateStatus } = useContext(UpdaterContext);
 
   const { token } = useToken();
 
@@ -26,22 +26,23 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
     e.preventDefault();
     try {
       if (article) {
-        // update article
-        const res = await updatetArticles(article.uuid, token, {
-          title,
-          description,
+        console.log("article exist");
+        const res = await fetchData(`/articles/${article.uuid}`, "PUT", token, {
+          body: JSON.stringify({ title, description }),
         });
         console.log(res);
       } else {
-        //create article
-        const res = await createArticles(token, { title, description });
-        console.log(res);
+        console.log("No article");
+        const res = await fetchData(`/articles/`, "POST", token, {
+          body: JSON.stringify({ title, description }),
+        });
       }
-      setUpdateStatus((value) => value + 1);
+
+      setUpdateStatus((status) => !status);
 
       hideModal();
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       alert("error!");
     }
   };

@@ -1,7 +1,7 @@
 import React from "react";
 
 const UpdaterContex = React.createContext({
-  updateStatus: 0,
+  updateStatus: false,
   setUpdateStatus: () => {},
 });
 

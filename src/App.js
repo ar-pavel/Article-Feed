@@ -1,18 +1,19 @@
 import React, { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import UpdaterContex from "./hook/updaterContext";
+import UpdaterContext from "./hook/updaterContext";
 const Signup = lazy(() => import("./components/Signup"));
 const Login = lazy(() => import("./components/Login"));
 const Article = lazy(() => import("./components/Article"));
 const Feed = lazy(() => import("./components/Feed"));
+const PageNotFound = lazy(() => import("./components/PageNotFound"));
 
 const App = () => {
-  const [updateStatus, setUpdateStatus] = useState(0);
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   return (
     <>
-      <UpdaterContex.Provider
+      <UpdaterContext.Provider
         value={{ updateStatus: updateStatus, setUpdateStatus: setUpdateStatus }}
       >
         <Suspense
@@ -29,13 +30,16 @@ const App = () => {
               <Route exact path="/">
                 <Feed />
               </Route>
+              <Route exact path="/404">
+                <PageNotFound />
+              </Route>
               <Route path="/:uuid">
                 <Article />
               </Route>
             </Switch>
           </Router>
         </Suspense>
-      </UpdaterContex.Provider>
+      </UpdaterContext.Provider>
     </>
   );
 };

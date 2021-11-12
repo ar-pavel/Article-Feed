@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UpdaterContex from "../hook/updaterContext";
+import UpdaterContext from "../hook/updaterContext";
 import usePagination from "../hook/usePagination";
-import { getArticles } from "../lib/apiOptArticles";
+import { fetchData } from "../lib/apiOperations";
 import ArticleCard from "./ArticleCard";
 import Navbar from "./Navbar";
 
 const Feed = () => {
   const [articles, setArticles] = useState([]);
 
-  const { updateStatus } = useContext(UpdaterContex);
+  const { updateStatus } = useContext(UpdaterContext);
 
   const {
     currentPage,
@@ -25,7 +25,7 @@ const Feed = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getArticles();
+        const data = await fetchData(`/articles`, "GET");
         setArticles(data);
         console.log(data);
       } catch (error) {

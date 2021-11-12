@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
-import UpdaterContex from "../hook/updaterContext";
+import UpdaterContext from "../hook/updaterContext";
 import useToken from "../hook/useToken";
-import { deleteArticle, getArticles } from "../lib/apiOptArticles";
+import { fetchData } from "../lib/apiOperations";
 import ConstructArticle from "./ConstructArticle";
 import Navbar from "./Navbar";
 
@@ -11,7 +11,7 @@ const Article = () => {
   let { uuid } = useParams();
   let history = useHistory();
 
-  const { updateStatus } = useContext(UpdaterContex);
+  const { updateStatus } = useContext(UpdaterContext);
 
   const [article, setArticle] = useState({
     uuid: uuid,
@@ -24,25 +24,38 @@ const Article = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getArticles(uuid);
-      setArticle(data);
+      try {
+        const data = await fetchData(`/articles/${article.uuid}`, "GET");
+        console.log("data fetched :", data);
+        setArticle(data);
+      } catch (error) {
+        console.log("unable to fetch");
+        setArticle({
+          uuid: null,
+          title: "",
+          description: "",
+          author: "",
+        });
+      }
       console.log("update status:", updateStatus);
     };
     fetch();
     // not sure why removing `article.title, article.description` as dependancy
     // doesn't always work
-  }, [uuid, article.title, article.description, updateStatus]);
+  }, [updateStatus]);
 
   const handleDelete = () => {
     try {
-      deleteArticle(token, uuid);
+      fetchData(`/articles/${uuid}`, "DELETE", token);
       history.push("/");
     } catch (error) {
       alert("unable to delete the article.");
     }
   };
 
-  return (
+  return article.uuid == null ? (
+    <Redirect to="/404" />
+  ) : (
     <>
       <Navbar
         left={
@@ -122,6 +135,7 @@ const Article = () => {
         </div>
         <div className="description">{article.description}</div>
       </div>
+
       {status && (
         <ConstructArticle article={article} changeStatus={setStatus} />
       )}
