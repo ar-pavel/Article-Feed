@@ -119,6 +119,12 @@
   margin-bottom: 2em;
 }
 
+.no-content {
+  text-align: center;
+  margin-top: 5em;
+  color: red;
+}
+
 .article-add-button {
   /* padding: 0.5rem 1rem; */
   background: aliceblue;
