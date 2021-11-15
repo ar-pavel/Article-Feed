@@ -62,7 +62,7 @@ const Article = () => {
       />
 
       {error ? (
-        <h1>NO CONTENT</h1>
+        <h1 className="no-content">NO CONTENT</h1>
       ) : (
         <div className="article-view">
           <div className="flex-display space-between">
