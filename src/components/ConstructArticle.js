@@ -33,6 +33,7 @@ const ConstructArticle = ({ article = null, changeStatus }) => {
         console.log(res);
       } else {
         await fetchData(`/articles/`, "POST", token, {
+
           body: JSON.stringify({ title, description }),
         });
       }

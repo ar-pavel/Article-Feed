@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import UpdaterContext from "../hook/updaterContext";
 import useToken from "../hook/useToken";
@@ -34,11 +34,13 @@ const Article = () => {
       } catch (error) {
         console.log("unable to fetch");
         setError(true);
+
       }
       console.log("update status:", updateStatus);
     };
     fetch();
   }, [article.uuid, updateStatus]);
+
 
   const handleDelete = () => {
     try {
@@ -49,7 +51,9 @@ const Article = () => {
     }
   };
 
-  return (
+  return article.uuid == null ? (
+    <Redirect to="/404" />
+  ) : (
     <>
       <Navbar
         left={
