@@ -30,11 +30,11 @@ const App = () => {
               <Route exact path="/">
                 <Feed />
               </Route>
-              <Route exact path="/404">
-                <PageNotFound />
-              </Route>
-              <Route path="/:uuid">
+              <Route path="/article/:uuid">
                 <Article />
+              </Route>
+              <Route path="*">
+                <PageNotFound />
               </Route>
             </Switch>
           </Router>
